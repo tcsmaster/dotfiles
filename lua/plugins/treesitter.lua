@@ -2,7 +2,7 @@ return {
   'nvim-treesitter/nvim-treesitter',
   lazy = false,
   build = ':TSUpdate',
-  branch = 'main',
+  branch = 'master',
   version = nil,
   config = function()
     ---@param buf integer
@@ -47,7 +47,7 @@ return {
       end,
     })
   end,
-  ensure_installed = { 'yaml', 'toml', 'python', 'bash', 'Dockerfile', 'rust' },
+  ensure_installed = { 'yaml', 'toml', 'python', 'bash', 'dockerfile', 'rust' },
   highlights = { enable = true },
   incremental_selection = {
     enable = true,
