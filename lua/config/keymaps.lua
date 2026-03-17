@@ -18,8 +18,11 @@ vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
 vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
---  Use CTRL+<hjkl> to switch between windows
---
+-- Use CTRL+<hjkl> to switch between windows
+vim.keymap.set('i', '<A-h>', '<Left>', { desc = 'Alt + h to move left in insert mode' })
+vim.keymap.set('i', '<A-j>', '<Down>', { desc = 'Alt + j to move down in insert mode' })
+vim.keymap.set('i', '<A-k>', '<Up>', { desc = 'Alt + k to move up in insert mode' })
+vim.keymap.set('i', '<A-l>', '<Right>', { desc = 'Alt + l to move right in insert mode' })
 --  See `:help wincmd` for a list of all window commands
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
