@@ -49,6 +49,7 @@ return {
   end,
   ensure_installed = { 'yaml', 'toml', 'python', 'bash', 'dockerfile', 'rust' },
   highlights = { enable = true },
+  auto_install = false,
   incremental_selection = {
     enable = true,
     keymaps = {
