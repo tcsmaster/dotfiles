@@ -3,8 +3,23 @@ return {
   lazy = false,
   build = ':TSUpdate',
   branch = 'master',
+  commit = 'cf12346',
   version = nil,
   config = function()
+    local ensure = { 'yaml', 'toml', 'python', 'bash', 'dockerfile', 'rust' }
+    require('nvim-treesitter.configs').setup {
+      highlights = { enable = true },
+      ensure_installed = ensure,
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = 'gnn', -- set to `false` to disable one of the mappings
+          node_incremental = 'grn',
+          scope_incremental = 'grc',
+          node_decremental = 'grm',
+        },
+      },
+    }
     ---@param buf integer
     ---@param language string
     local function treesitter_try_attach(buf, language)
@@ -23,7 +38,7 @@ return {
       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
     end
 
-    local available_parsers = require('nvim-treesitter').get_available()
+    local available_parsers = require('nvim-treesitter.parsers').available_parsers()
     vim.api.nvim_create_autocmd('FileType', {
       callback = function(args)
         local buf, filetype = args.buf, args.match
@@ -32,7 +47,7 @@ return {
           return
         end
 
-        local installed_parsers = require('nvim-treesitter').get_installed 'parsers'
+        local installed_parsers = require('nvim-treesitter.info').installed_parsers()
 
         if vim.tbl_contains(installed_parsers, language) then
           -- enable the parser if it is installed
@@ -47,16 +62,4 @@ return {
       end,
     })
   end,
-  ensure_installed = { 'yaml', 'toml', 'python', 'bash', 'dockerfile', 'rust' },
-  highlights = { enable = true },
-  auto_install = false,
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = 'gnn', -- set to `false` to disable one of the mappings
-      node_incremental = 'grn',
-      scope_incremental = 'grc',
-      node_decremental = 'grm',
-    },
-  },
 }
