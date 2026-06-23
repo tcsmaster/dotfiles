@@ -1,11 +1,12 @@
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-vim.keymap.set('n', '<leader>w', ':w<cr>', { desc = 'Save' })
-vim.keymap.set('n', '<leader>wq', ':wq<cr>', { desc = 'Save + quit' })
 -- Diagnostic keymaps
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+vim.keymap.set('n', '<leader>re', '<cmd>restart<CR>', { desc = 'Restart' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Move down in the current buffer' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Moveeup in the current buffer' })
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')

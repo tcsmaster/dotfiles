@@ -61,11 +61,6 @@ return {
         --  Similar to document symbols, except searches over your entire project.
         map('<leader>gW', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
 
-        -- Jump to the type of the word under your cursor.
-        --  Useful when you're not sure what type a variable is and you want to see
-        --  the definition of its *type*, not where it was *defined*.
-        map('<leader>grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
-
         -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
         ---@param client vim.lsp.Client
         ---@param method vim.lsp.protocol.Method
@@ -142,7 +137,11 @@ return {
       },
     }
     local servers = {
-      pyright = {},
+      pyright = {
+        settings = {
+          PythonPath = 'venv',
+        },
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -161,6 +160,7 @@ return {
       'stylua',
       'ruff',
       'pyright',
+      'clangd',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
